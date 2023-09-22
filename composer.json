@@ -1,0 +1,21 @@
+{
+  "name": "zarganwar/event-bus",
+  "description": "Event bus for PHP",
+  "homepage": "https://github.com/Zarganwar/event-bus",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Zarganwar\\EventBus\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Martin Jirasek",
+      "email": "jertin@seznam.cz"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "psr/log": "^3.0"
+  }
+}
