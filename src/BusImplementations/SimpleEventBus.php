@@ -4,11 +4,10 @@
 namespace Zarganwar\EventBus\BusImplementations;
 
 
-use Zarganwar\EventBus\Event;
-use Zarganwar\EventBus\EventBus;
-use Zarganwar\EventBus\EventHandler;
 use Psr\Log\LoggerAwareTrait;
 use Throwable;
+use Zarganwar\EventBus\EventBus;
+use Zarganwar\EventBus\EventHandler;
 
 class SimpleEventBus implements EventBus
 {
@@ -19,14 +18,16 @@ class SimpleEventBus implements EventBus
 	 */
 	private array $subscribers = [];
 
-	public function registerSubscriber(string $event, EventHandler $subscriber): self
+
+	public function registerSubscriber(string $eventClassName, EventHandler $subscriber): self
 	{
-		$this->subscribers[$event][] = $subscriber;
+		$this->subscribers[$eventClassName][] = $subscriber;
 
 		return $this;
 	}
 
-	public function dispatch(Event $event): void
+
+	public function dispatch(object $event): void
 	{
 		foreach ($this->subscribers[$event::class] ?? [] as $subscriber) {
 			try {

@@ -2,11 +2,12 @@
 
 namespace Zarganwar\EventBus;
 
-use Zarganwar\EventBus\BusImplementations\SimpleEventBus;
-
 interface EventBus
 {
-	public function registerSubscriber(string $event, EventHandler $subscriber): SimpleEventBus;
 
-	public function dispatch(Event $event): void;
+	public function registerSubscriber(string $eventClassName, EventHandler $subscriber): EventBus;
+
+
+	public function dispatch(object $event): void;
+
 }
