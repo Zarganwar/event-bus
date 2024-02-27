@@ -33,7 +33,11 @@ class SimpleEventBus implements EventBus
 			try {
 				$subscriber->handle($event);
 			} catch (Throwable $e) {
-				$this->logger?->error($e->getMessage(), ['exception' => $e]);
+				if ($this->logger) {
+					$this->logger->error($e->getMessage(), ['exception' => $e]);
+				}
+
+				throw $e;
 			}
 		}
 	}
